@@ -1,0 +1,4 @@
+// src/styles/carbon-grid.scss
+@use '@carbon/react' with (
+  $use-flexbox-grid: true
+);
