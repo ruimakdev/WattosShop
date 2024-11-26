@@ -1,16 +1,19 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
-   "compilerOptions": {
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
+  "compilerOptions": {
+    "outDir": "./dist",
     "strict": true,
-    "types": ["jest", "node"]
+    "moduleResolution": "node",
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "*": ["types/*"]
+    },
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "src/tests/**/*"]
+  
 }

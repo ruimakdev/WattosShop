@@ -1,26 +1,43 @@
-import React from 'react';  // Added import
 import { render, screen, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import { StarshipCard } from "../components/Card";
+import { Starship } from "../types";
 
-// Mock data for a starship
-const mockStarship = {
-  name: "Millennium Falcon",
-  model: "YT-1300 light freighter",
-  manufacturer: "Corellian Engineering Corporation",
-  cost_in_credits: "1000000",
+export const mockStarship: Starship = {
+  name: "X-Wing",
+  model: "T-65B X-wing starfighter",
+  manufacturer: "Incom Corporation",
+  cost_in_credits: "149999",
+  length: "12.5",
+  max_atmosphering_speed: "1050",
+  crew: "1",
+  passengers: "0",
+  cargo_capacity: "110",
+  consumables: "1 week",
+  hyperdrive_rating: "1.0",
+  MGLT: "100",
+  starship_class: "Starfighter",
+  pilots: [],
+  films: [
+    "https://swapi.dev/api/films/1/",
+    "https://swapi.dev/api/films/2/",
+    "https://swapi.dev/api/films/3/",
+  ],
+  created: "2014-12-12T11:19:05.340000Z",
+  edited: "2014-12-20T21:23:49.886000Z",
+  url: "https://swapi.dev/api/starships/12/",
 };
 
-// Mock function for the onBuy prop
+
 const mockOnBuy = jest.fn();
 
 test("renders StarshipCard with correct information", () => {
   render(<StarshipCard starship={mockStarship} onBuy={mockOnBuy} />);
 
-  expect(screen.getByText("Millennium Falcon")).toBeInTheDocument();
-  expect(screen.getByText("Model: YT-1300 light freighter")).toBeInTheDocument();
-  expect(screen.getByText("Manufacturer: Corellian Engineering Corporation")).toBeInTheDocument();
-  expect(screen.getByText("1000000 credits")).toBeInTheDocument();
+  expect(screen.getByText("X-Wing")).toBeInTheDocument();
+  expect(screen.getByText("Model: T-65B X-wing starfighter")).toBeInTheDocument();
+  expect(screen.getByText("Manufacturer: Incom Corporation")).toBeInTheDocument();
+  expect(screen.getByText("149999 credits")).toBeInTheDocument();
 });
 
 test("increases and decreases quantity", () => {
@@ -30,14 +47,11 @@ test("increases and decreases quantity", () => {
   const increaseButton = screen.getByText("+");
   const quantityInput = screen.getByRole("spinbutton");
 
-  // Initial quantity should be 1
   expect(quantityInput).toHaveValue(1);
 
-  // Increase quantity
   fireEvent.click(increaseButton);
   expect(quantityInput).toHaveValue(2);
 
-  // Decrease quantity
   fireEvent.click(decreaseButton);
   expect(quantityInput).toHaveValue(1);
 });
