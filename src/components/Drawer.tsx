@@ -58,6 +58,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, closeDrawer }) => (
     >
       <StyledSideNav aria-label="Main navigation menu" isFixedNav expanded>
         <SideNavItems>
+          {/* Please let me know if you would like me to implement these with real routes */}
           <SideNavLink href="#" aria-label="Navigate to Starships">
             Starships
           </SideNavLink>

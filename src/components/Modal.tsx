@@ -9,11 +9,23 @@ interface ModalProps {
 
 const StyledModal = styled(CarbonModal)`
   .cds--modal-container {
+    position: fixed;
+    padding: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    transition: transform 240ms cubic-bezier(0, 0, 0.3, 1);
+    max-width: 400px;
+    width: 90%;
+    max-height: 40vh;
+    overflow-y: auto;
     border-radius: 12px;
-    padding: 20px;
-    background: var(--color-modal-background);
-    box-shadow: 0 4px 8px var(--color-modal-shadow);
-    color: var(--color-modal-text);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 768px) {
+      border-radius: 8px;
+      padding: 16px;
+    }
   }
 
   .cds--modal-heading {
@@ -25,9 +37,21 @@ const StyledModal = styled(CarbonModal)`
   .cds--btn--primary {
     background-color: var(--color-modal-button);
     color: var(--color-modal-button-text);
+    padding: 0;
+    margin: 0 auto;
+    justify-content: center;
+    height:100%;
+    padding-block: 0 !important;
+    align-items: center;
+
+
     &:hover {
       background-color: var(--color-modal-button-hover);
     }
+  }
+
+  .cds--modal-close {
+  background: unset;
   }
 `;
 
